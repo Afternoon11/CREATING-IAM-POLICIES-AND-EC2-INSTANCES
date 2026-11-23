@@ -53,3 +53,17 @@ This lab introduced how IAM policy statements work, how groups can simplify perm
 
 ---
 A learning lab only. Validate policies in a test account before using them in production.
+
+
+## Access-Control Model
+
+```mermaid
+flowchart TD
+ A[IAM User or Role] --> B[IAM Policy Evaluation]
+ B --> C{Explicit Deny?}
+ C -- Yes --> D[Access Denied]
+ C -- No --> E{Allow Matches Action, Resource & Conditions?}
+ E -- Yes --> F[Access Allowed]
+ E -- No --> D
+ G[EC2 Resources & Tags] --> B
+```
